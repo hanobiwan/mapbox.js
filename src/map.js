@@ -78,7 +78,7 @@ var LMap = L.Map.extend({
             this.addControl(this.shareControl);
         }
 
-        this._mapboxLogo = mapboxLogo();
+        this._mapboxLogo = mapboxLogo(_);
         this.addControl(this._mapboxLogo);
 
         this._loadTileJSON(_);
