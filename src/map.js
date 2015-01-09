@@ -7,7 +7,8 @@ var util = require('./util'),
     gridControl = require('./grid_control').gridControl,
     infoControl = require('./info_control').infoControl,
     shareControl = require('./share_control').shareControl,
-    legendControl = require('./legend_control').legendControl;
+    legendControl = require('./legend_control').legendControl,
+    mapboxLogo = require('./mapbox_logo').MapboxLogo;
 
 function withAccessToken(options, accessToken) {
     if (!accessToken || options.accessToken)
@@ -78,6 +79,9 @@ var LMap = L.Map.extend({
         }
 
         this._loadTileJSON(_);
+
+        this.mapboxLogo = mapboxLogo(L.mapbox.accessToken);
+        this.addControl(this.mapboxLogo);
     },
 
     // Update certain properties on 'ready' event
