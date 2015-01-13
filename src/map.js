@@ -8,7 +8,7 @@ var util = require('./util'),
     infoControl = require('./info_control').infoControl,
     shareControl = require('./share_control').shareControl,
     legendControl = require('./legend_control').legendControl,
-    mapboxLogo = require('./mapbox_logo').MapboxLogo;
+    mapboxLogoControl = require('./mapbox_logo').mapboxLogoControl;
 
 function withAccessToken(options, accessToken) {
     if (!accessToken || options.accessToken)
@@ -78,8 +78,8 @@ var LMap = L.Map.extend({
             this.addControl(this.shareControl);
         }
 
-        this._mapboxLogo = mapboxLogo(_);
-        this.addControl(this._mapboxLogo);
+        this._mapboxLogoControl = mapboxLogoControl({urlOrMapID: _});
+        this.addControl(this._mapboxLogoControl);
 
         this._loadTileJSON(_);
     },
@@ -128,7 +128,7 @@ var LMap = L.Map.extend({
             this.shareControl._setTileJSON(json);
         }
 
-        this._mapboxLogo.addLogo(json);
+        this._mapboxLogoControl.addLogo(json);
 
         if (!this._loaded && json.center) {
             var zoom = this.getZoom() !== undefined ? this.getZoom() : json.center[2],
