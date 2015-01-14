@@ -128,7 +128,7 @@ var LMap = L.Map.extend({
             this.shareControl._setTileJSON(json);
         }
 
-        this._mapboxLogoControl.addLogo(json);
+        this._mapboxLogoControl._setTileJSON(json);
 
         if (!this._loaded && json.center) {
             var zoom = this.getZoom() !== undefined ? this.getZoom() : json.center[2],
